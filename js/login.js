@@ -32,8 +32,8 @@ function paintMain(currentId) {
   const SHOWING = "showing";
   userIdForm.classList.remove(SHOWING);
   main.classList.add(SHOWING);
-  userId.innerHTML = `<font color="black"><u>${currentId}</u></font>님, 환영합니다.`;
-  userId.title = "더블 클릭 시 로그아웃됩니다.";
+  userId.innerHTML = `Welcome, <font color="black"><u>${currentId}</u></font>`;
+  userId.title = "You will be logged out on double-click.";
 }
 
 // Local Storgae에 있는 userId의 값을 가져옴

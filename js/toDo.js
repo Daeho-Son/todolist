@@ -16,6 +16,21 @@ let listToDoCompleted = [];
 //   event.
 // }
 
+// 완료됨을 클릭했을 때
+function handleCompletedTextClick() {
+  const UNSHOWING = "unshowing";
+  const completeToggle = completedText.children[0];
+  if (completeToggle.classList[1] === "fa-chevron-down") {
+    toDoCompleted.classList.add(UNSHOWING);
+    completeToggle.classList.remove("fa-chevron-down");
+    completeToggle.classList.add("fa-chevron-right");
+  } else if (completeToggle.classList[1] === "fa-chevron-right") {
+    toDoCompleted.classList.remove(UNSHOWING);
+    completeToggle.classList.remove("fa-chevron-right");
+    completeToggle.classList.add("fa-chevron-down");
+  }
+}
+
 // task의 맨 앞 아이콘 위에서 마우스를 클릭할 때 이벤트
 function handleCompleteIconmousedown(event) {
   const i = event.target;
@@ -75,7 +90,8 @@ function handleCompleteIconClick(event) {
   if (ul === "js-toDoList") {
     toDoList.removeChild(li);
     toDoCompleted.appendChild(li);
-    li.firstChild.title = "완료 취소 | 작업 완료 및 미완료 간에 전환합니다.";
+    li.firstChild.title =
+      "<Cancel Completion> Switch between job completion and incomplete.";
     li.children[2].innerHTML = `<strike>${text}</strike>`;
     const completed = listToDoList.filter((element) => {
       return element.id === event.target.parentNode.id;
@@ -90,7 +106,8 @@ function handleCompleteIconClick(event) {
   if (ul === "js-toDoCompleted") {
     toDoCompleted.removeChild(li);
     toDoList.appendChild(li);
-    li.firstChild.title = "완료 | 작업 완료 및 미완료 간에 전환합니다.";
+    li.firstChild.title =
+      "<Complete> Switch between job completion and incomplete.";
     li.children[2].innerHTML = text;
     const uncompleted = listToDoCompleted.filter((element) => {
       return element.id === event.target.parentNode.id;
@@ -142,6 +159,7 @@ function uuidv4() {
 
 // toDoCompleted에 값의 여부에 따라 Display: None, Block 전환
 function checkCompleted() {
+  const SHOWING = "showing";
   if (toDoCompleted.children.length === 0) {
     toDoCompleted.parentNode.classList.remove(SHOWING);
   } else {
@@ -168,7 +186,7 @@ function paintTask(task, task_id, status, starStatus) {
   // const starIcon = document.createElement("i");
   taskSlot.id = task_id;
   taskSlot.classList.add("task");
-  taskSlot.setAttribute("title", "더블 클릭 시 삭제됩니다.");
+  taskSlot.setAttribute("title", "It will be deleted on double-click.");
   taskSlot.appendChild(completeIcon);
   taskSlot.appendChild(taskText);
   // taskSlot.appendChild(starIcon);
@@ -183,6 +201,7 @@ function paintTask(task, task_id, status, starStatus) {
   completeIcon.addEventListener("mouseenter", handleCompleteIconMouseenter);
   completeIcon.addEventListener("mouseleave", handleCompleteIconMouseleave);
   completeIcon.addEventListener("mousedown", handleCompleteIconmousedown);
+  completedText.addEventListener("click", handleCompletedTextClick);
   // starIcon.addEventListener("click", handleStarIconClick);
 
   // console.log(starStatus);
@@ -206,7 +225,8 @@ function paintTask(task, task_id, status, starStatus) {
       taskText.innerHTML = `${task}`;
       completeIcon.classList.add("far");
       completeIcon.classList.add("fa-circle");
-      completeIcon.title = "완료 | 작업을 완료 및 미완료 간에 전환합니다.";
+      completeIcon.title =
+        "<Complete> Switch the task between Complete and Incomplete.";
       toDoList.appendChild(taskSlot);
       listToDoList.push(taskObj);
       break;
@@ -214,7 +234,8 @@ function paintTask(task, task_id, status, starStatus) {
       taskText.innerHTML = `<strike>${task}</strike>`;
       completeIcon.classList.add("fas");
       completeIcon.classList.add("fa-check-circle");
-      completeIcon.title = "완료 취소 | 작업을 완료 및 미완료 간에 전환합니다.";
+      completeIcon.title =
+        "<Cancel Complete> Switch the task between Complete and Incomplete.";
       toDoCompleted.appendChild(taskSlot);
       listToDoCompleted.push(taskObj);
       break;
@@ -227,7 +248,7 @@ function handleSubmit() {
   event.preventDefault();
   if (addTaskInput.value !== "") {
     if (localStorage.getItem(USER_ID) === null) {
-      alert("사용자의 이름을 입력해주세요");
+      alert("Please enter your name");
       addTaskForm.value = "";
     } else {
       const task = addTaskInput.value;
@@ -258,9 +279,9 @@ function loadTask() {
 }
 
 function init() {
-  // alert(
-  //   `          ########## 사용 설명서 ##########\n1. 사용자 이름을 클릭하면 로그아웃 됩니다.\n2. task를 더블 클릭하면 task가 삭제됩니다.\n3. task 맨 앞의 아이콘을 누르면 완료됨으로 전환됩니다.\n4. 아무데나 마우스를 올리고 있으면 설명이 나옵니다.`
-  // );
+  alert(
+    `#################### User's Guide ####################\n1. Click your user name to log out.\n2. Double-click the task to delete the task.\n3. Touch the check icon in front of the task to switch to Completed.\n4. Click the clock to get the current temperature.\n5. You can hide completed tasks by clicking the Completed button.\n6. Hover your mouse anywhere and you'll see an explanation.`
+  );
   loadTask();
   addTaskForm.addEventListener("submit", handleSubmit);
 }
