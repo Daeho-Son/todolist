@@ -13,8 +13,22 @@ body .header {
   align-content: center;
 }
 
+.header .header__title {
+  margin-top: 30px;
+}
+
+.header .form {
+  margin-top: 50px;
+}
+
+.header .userId {
+  margin-top: 40px;
+}
+
 .header .selectTheme {
-  padding: 0.5em 0.7em 0.3em 0.7em;
+  margin-top: 30px;
+  height: 40px;
+  padding: 0.6em 0.9em 0 0.9em;
   border: 1px solid black;
   border-radius: 5px;
 }
@@ -23,12 +37,14 @@ body .main ul {
   list-style: none;
   padding: 0;
 }
+
 .main ul li {
   padding: 0.8em 0.8em;
   margin-bottom: 1px;
   border: 1px solid black;
   border-radius: 5px;
 }
+
 .main ul li span {
   margin-left: 10px;
 }
@@ -37,6 +53,7 @@ body .main ul {
   padding: 0.2em 0.3em;
   border-radius: 5px;
 }
+
 body .addTask {
   position: fixed;
   width: 100%;
@@ -80,6 +97,15 @@ body .colorUp {
 }
 
 /* js 관련 */
+.form,
+.main {
+  display: none;
+}
+
 .unshowing {
   display: none;
+}
+
+.showing {
+  display: block;
 }

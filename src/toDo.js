@@ -2,50 +2,51 @@ const addTaskForm = document.querySelector(".addTask .js-addTaskForm"),
   addTaskInput = document.querySelector(".addTask .js-addTaskInput");
 const toDoList = document.querySelector(".main .js-toDoList"),
   toDoCompleted = document.querySelector(".main .js-toDoCompleted");
-const completedText = document.querySelector(".main .completedContainer");
 
 const TODO_LIST = "toDoList",
-  TODO_COMPLETED = "toDoCompleted",
+  TODO_COMPLETED = "toDoCompleted";
   UNSHOWING = "unshowing";
 
 let listToDoList = [];
 let listToDoCompleted = [];
 
 function handleImousedown(event) {
+  const i = event.target;
   const ul = event.target.parentNode.parentNode.className;
   if (ul === "js-toDoList") {
-    event.target.classList.remove("far");
-    event.target.classList.remove("fa-check-circle");
-    event.target.classList.add("fas");
-    event.target.classList.add("fa-check-circle");
+    i.classList.remove("far");
+    i.classList.remove("fa-check-circle");
+    i.classList.add("fas");
+    i.classList.add("fa-check-circle");
   } else {
-    event.target.classList.remove("fas");
-    event.target.classList.remove("fa-check-circle");
-    event.target.classList.add("far");
-    event.target.classList.add("fa-circle");
+    i.classList.remove("fas");
+    i.classList.add("far");
+    i.classList.add("fa-circle");
   }
 }
 
 function handleImouseleave(event) {
+  const i = event.target;
   const ul = event.target.parentNode.parentNode.className;
   if (ul === "js-toDoList") {
-    event.target.classList.remove("fas");
-    event.target.classList.remove("fa-check-circle");
-    event.target.classList.add("far");
-    event.target.classList.add("fa-circle");
+    i.classList.remove("fas");
+    i.classList.remove("fa-check-circle");
+    i.classList.add("far");
+    i.classList.add("fa-circle");
   } else {
-    event.target.classList.remove("far");
-    event.target.classList.remove("fa-circle");
-    event.target.classList.add("fas");
-    event.target.classList.add("fa-check-circle");
+    i.classList.remove("far");
+    i.classList.remove("fa-circle");
+    i.classList.add("fas");
+    i.classList.add("fa-check-circle");
   }
 }
 
 function handleImouseenter(event) {
+  const i = event.target;
   const ul = event.target.parentNode.parentNode.className;
   if (ul === "js-toDoList") {
-    event.target.classList.remove("fa-circle");
-    event.target.classList.add("fa-check-circle");
+    i.classList.remove("fa-circle");
+    i.classList.add("fa-check-circle");
   }
 }
 
@@ -55,6 +56,9 @@ function handleIClick(event) {
   if (ul === "js-toDoList") {
     toDoList.removeChild(li);
     toDoCompleted.appendChild(li);
+
+    li.firstChild.title = "완료 취소 | 작업 완료 및 미완료 간에 전환합니다.";
+
     const completed = listToDoList.filter((element) => {
       return element.id === event.target.parentNode.id;
     });
@@ -67,6 +71,9 @@ function handleIClick(event) {
   if (ul === "js-toDoCompleted") {
     toDoCompleted.removeChild(li);
     toDoList.appendChild(li);
+
+    li.firstChild.title = "완료 | 작업 완료 및 미완료 간에 전환합니다.";
+
     const uncompleted = listToDoCompleted.filter((element) => {
       return element.id === event.target.parentNode.id;
     });
@@ -83,14 +90,17 @@ function handleIClick(event) {
 function handleLicontextmenu(event) {}
 
 function handleLiDbclick(event) {
-  const ul = event.target.parentNode.className;
-  const i = event.target.firstChild;
+  const li = event.target;
+  const ul = li.parentNode.className;
+  const i = li.firstChild;
   if (ul === "js-toDoList") {
+    toDoList.removeChild(li);
     listToDoList = listToDoList.filter((element) => {
       return element.id !== i.parentNode.id;
     });
   }
   if (ul === "js-toDoCompleted") {
+    toDoCompleted.removeChild(li);
     listToDoCompleted = listToDoCompleted.filter((element) => {
       return element.id !== i.parentNode.id;
     });
@@ -108,15 +118,19 @@ function uuidv4() {
   );
 }
 
+// 완료 목록이 비어있으면 완료 Container가 사라짐.
+function checkCompleted() {
+  if (toDoCompleted.children.length === 0) {
+    toDoCompleted.parentNode.classList.add(UNSHOWING);
+  } else {
+    toDoCompleted.parentNode.classList.remove(UNSHOWING);
+  }
+}
+
 function saveTask() {
   localStorage.setItem(TODO_LIST, JSON.stringify(listToDoList));
   localStorage.setItem(TODO_COMPLETED, JSON.stringify(listToDoCompleted));
-  // 완료 목록이 비어있으면 완료 Container가 사라짐.
-  if (toDoCompleted.children.length === 0) {
-    completedText.classList.add(UNSHOWING);
-  } else {
-    completedText.classList.remove(UNSHOWING);
-  }
+  checkCompleted();
 }
 
 function paintTask(task, task_id, status) {
@@ -144,17 +158,14 @@ function paintTask(task, task_id, status) {
     case TODO_LIST:
       i.classList.add("far");
       i.classList.add("fa-circle");
-      i.setAttribute("title", "완료 | 작업을 완료 및 미완료 간에 전환합니다.");
+      i.title = "완료 | 작업을 완료 및 미완료 간에 전환합니다.";
       toDoList.appendChild(li);
       listToDoList.push(taskObj);
       break;
     case TODO_COMPLETED:
       i.classList.add("fas");
       i.classList.add("fa-check-circle");
-      i.setAttribute(
-        "title",
-        "완료 취소 | 작업을 완료 및 미완료 간에 전환합니다."
-      );
+      i.title = "완료 취소 | 작업을 완료 및 미완료 간에 전환합니다.";
       toDoCompleted.appendChild(li);
       listToDoCompleted.push(taskObj);
       break;
@@ -181,7 +192,7 @@ function loadTask() {
       paintTask(element.task, element.id, TODO_LIST);
     });
   }
-  if (toDoCompleted !== null) {
+  if (toDoCompleted !== null && toDoCompleted !== "[]") {
     const parsedToDoCompleted = JSON.parse(toDoCompleted);
     parsedToDoCompleted.forEach((element) => {
       paintTask(element.task, element.id, TODO_COMPLETED);

@@ -16,7 +16,11 @@
       <h1 class="header__title">
         <i class="fas fa-home"> 할 일</i>
       </h1>
-      <h1 class="js-currentTime"></h1>
+      <h2 class="js-currentTime"></h2>
+      <form class="js-userIdForm form">
+        <input type="text" placeholder="이름을 입력하세요." />
+      </form>
+      <h3 class="userId"></h3>
       <h3 class="selectTheme colorUp">
         <i class="fas fa-ellipsis-h"></i>
       </h3>
@@ -35,8 +39,8 @@
         </li> -->
       </ul>
       <div class="completedContainer">
-        <span class="completed colorUp" title="완료됨 버킷 축소">
-          <span class="competedText">▽ 완료됨</span>
+        <span class="competedText completed colorUp" title="완료됨 버킷 축소">
+          ▽ 완료됨
         </span>
         <ul class="js-toDoCompleted">
           <!-- <li>
@@ -61,7 +65,9 @@
         />
       </form>
     </div>
-    <script src="src/toDo.js"></script>
+    <script src="src/login.js"></script>
     <script src="src/clock.js"></script>
+    <script src="src/toDo.js"></script>
+    <script src="src/bgImgs.js"></script>
   </body>
 </html>

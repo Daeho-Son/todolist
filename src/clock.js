@@ -38,7 +38,7 @@ function getClock() {
   minutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
   seconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
-  clock.innerHTML = `${fullYear}-${month}-${day} (${dayOfTheWeek}) ${hour}:${minutes}:${seconds}`;
+  clock.innerHTML = `${fullYear}-${month}-${day} (${dayOfTheWeek})<br>&nbsp;&nbsp;&nbsp;&nbsp;${hour}:${minutes}:${seconds}`;
 }
 
 function init() {
