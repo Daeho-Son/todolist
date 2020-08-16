@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To Do List</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/d0bc696c77.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+      <h1 class="header__title">
+        <i class="fas fa-home"> 할 일</i>
+      </h1>
+      <h1 class="js-currentTime"></h1>
+      <h3 class="selectTheme colorUp">
+        <i class="fas fa-ellipsis-h"></i>
+      </h3>
+    </header>
+    <!-- main -->
+    <main class="main">
+      <ul class="js-toDoList">
+        <!-- <li title="작업의 세부 정보를 보려면 탭하세요.">
+          <i
+            class="far fa-circle"
+            title="완료&#10;&#10;작업을 완료 및 미완료 간에 전환합니다."
+          ></i>
+          <span>to Do</span>
+          <i class="far fa-check-circle"></i>
+          <i class="fas fa-check-circle"></i>
+        </li> -->
+      </ul>
+      <div class="completedContainer">
+        <span class="completed colorUp" title="완료됨 버킷 축소">
+          <span class="competedText">▽ 완료됨</span>
+        </span>
+        <ul class="js-toDoCompleted">
+          <!-- <li>
+            <i class="far fa-circle" title="완료 취소&#10;&#10;작업을 완료 및 미완료 간에 전환합니다."></i>
+            <span><strike>완료된 toDo</strike></span>
+            <i class="fas fa-check-circle"></i>
+          </li> -->
+        </ul>
+      </div>
+    </main>
+    <!-- addTask -->
+    <div class="addTask">
+      <form class="js-addTaskForm colorUp">
+        <i class="fas fa-plus"></i>
+        <!-- <i class="far fa-circle"></i> -->
+        <!-- <i class="fas fa-plus-square"></i> -->
+        <input
+          type="text"
+          placeholder="작업 추가"
+          class="js-addTaskInput colorUp"
+          title='"할 일"에 작업 추가'
+        />
+      </form>
+    </div>
+    <script src="src/toDo.js"></script>
+    <script src="src/clock.js"></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+html {
+  height: 200vh;
+}
+
+body {
+  padding: 10px 40px 0 40px;
+  user-select: none;
+}
+
+body .header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.header .selectTheme {
+  padding: 0.5em 0.7em 0.3em 0.7em;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+body .main ul {
+  list-style: none;
+  padding: 0;
+}
+.main ul li {
+  padding: 0.8em 0.8em;
+  margin-bottom: 1px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.main ul li span {
+  margin-left: 10px;
+}
+
+.completedContainer .completed {
+  padding: 0.2em 0.3em;
+  border-radius: 5px;
+}
+body .addTask {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 10px 40px 30px 40px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  box-sizing: border-box;
+  z-index: 999;
+  background-color: white;
+}
+
+.addTask form {
+  padding: 0.8em 0.8em;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+.addTask input {
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+}
+.addTask input::placeholder {
+  color: white;
+}
+.addTask input:focus::placeholder {
+  color: transparent;
+}
+
+body .colorUp {
+  background-color: black;
+  color: white;
+}
+
+/* js 관련 */
+.unshowing {
+  display: none;
+}
