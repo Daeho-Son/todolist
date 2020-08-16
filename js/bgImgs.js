@@ -1,6 +1,5 @@
 const bgImageContainer = document.querySelector(".dgImageContainer");
 
-console.log(bgImageContainer);
 const MIN_COUNT = 1,
   MAX_COUNT = 6;
 

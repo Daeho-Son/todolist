@@ -33,6 +33,10 @@ body {
   border-radius: 5px;
 }
 
+.header .form input:focus::placeholder {
+  color: transparent;
+}
+
 .header .userId {
   margin-top: 40px;
 }
@@ -132,14 +136,16 @@ body {
 }
 
 .task {
-  background-color: white;
+  background-color: black;
+  opacity: 0.9;
+  color: white;
   padding: 0.8em 0.8em;
   margin-bottom: 1px;
   border: 1px solid black;
   border-radius: 5px;
 }
 .task:hover {
-  background-color: rgb(230, 230, 230);
+  opacity: 1;
 }
 
 .task span {
