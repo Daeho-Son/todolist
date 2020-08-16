@@ -1,7 +1,7 @@
 const addTaskForm = document.querySelector(".addTask .js-addTaskForm"),
-  addTaskInput = document.querySelector(".main .js-toDoList"),
-  toDoComplett = document.querySelector(".addTask .js-addTaskInput");
-const toDoLised = document.querySelector(".main .js-toDoCompleted");
+  addTaskInput = document.querySelector(".addTask .js-addTaskInput");
+const toDoList = document.querySelector(".main .js-toDoList"),
+  toDoCompleted = document.querySelector(".main .js-toDoCompleted");
 
 const TODO_LIST = "toDoList",
   TODO_COMPLETED = "toDoCompleted";
