@@ -1,5 +1,6 @@
 html {
-  height: 200vh;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -7,7 +8,7 @@ body {
   user-select: none;
 }
 
-body .header {
+.header {
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -25,28 +26,20 @@ body .header {
   margin-top: 40px;
 }
 
+.header .userId font:hover {
+  color: white;
+}
 .header .selectTheme {
-  margin-top: 30px;
-  height: 40px;
-  padding: 0.6em 0.9em 0 0.9em;
+  margin-top: 38px;
+  height: 0px;
+  padding: 0em 0.7em 1.3em 0.7em;
   border: 1px solid black;
   border-radius: 5px;
 }
 
-body .main ul {
+.main ul {
   list-style: none;
   padding: 0;
-}
-
-.main ul li {
-  padding: 0.8em 0.8em;
-  margin-bottom: 1px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.main ul li span {
-  margin-left: 10px;
 }
 
 .completedContainer .completed {
@@ -54,7 +47,7 @@ body .main ul {
   border-radius: 5px;
 }
 
-body .addTask {
+.addTask {
   position: fixed;
   width: 100%;
   left: 0;
@@ -66,7 +59,6 @@ body .addTask {
   align-content: center;
   box-sizing: border-box;
   z-index: 999;
-  background-color: white;
 }
 
 .addTask form {
@@ -91,9 +83,14 @@ body .addTask {
   color: transparent;
 }
 
-body .colorUp {
+.colorUp {
   background-color: black;
   color: white;
+  border: 1px solid black;
+  opacity: 0.9;
+}
+.colorUp:hover {
+  opacity: 1;
 }
 
 /* js 관련 */
@@ -105,4 +102,28 @@ body .colorUp {
 
 .showing {
   display: block;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.task {
+  background-color: white;
+  padding: 0.8em 0.8em;
+  margin-bottom: 1px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.task:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.task span {
+  margin-left: 10px;
 }

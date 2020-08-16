@@ -30,7 +30,7 @@ function askForName() {
 function paintMain(currentId) {
   userIdForm.classList.remove(SHOWING);
   main.classList.add(SHOWING);
-  userId.innerHTML = `${currentId}님, 환영합니다.`;
+  userId.innerHTML = `<font color="black"><u>${currentId}</u></font>님, 환영합니다.`;
   userId.title = "더블 클릭 시 로그아웃됩니다.";
 }
 

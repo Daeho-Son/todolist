@@ -1,16 +1,23 @@
 const addTaskForm = document.querySelector(".addTask .js-addTaskForm"),
   addTaskInput = document.querySelector(".addTask .js-addTaskInput");
 const toDoList = document.querySelector(".main .js-toDoList"),
-  toDoCompleted = document.querySelector(".main .js-toDoCompleted");
+  toDoCompleted = document.querySelector(".main .js-toDoCompleted"),
+  completedText = document.querySelector(".completedContainer .competedText");
 
 const TODO_LIST = "toDoList",
-  TODO_COMPLETED = "toDoCompleted";
+  TODO_COMPLETED = "toDoCompleted",
+  STAR_STATUS = "starStatus";
 
 let listToDoList = [];
 let listToDoCompleted = [];
 
+// // star 아이콘을 클릭할 때 이벤트
+// function handleStarIconClick(event) {
+//   event.
+// }
+
 // task의 맨 앞 아이콘 위에서 마우스를 클릭할 때 이벤트
-function handleImousedown(event) {
+function handleCompleteIconmousedown(event) {
   const i = event.target;
   const ul = event.target.parentNode.parentNode.className;
   // toDoList일 때
@@ -29,7 +36,7 @@ function handleImousedown(event) {
 }
 
 // task 맨 앞 아이콘에서 마우스가 떠날 때 이벤트
-function handleImouseleave(event) {
+function handleCompleteIconMouseleave(event) {
   const i = event.target;
   const ul = event.target.parentNode.parentNode.className;
   // toDoList일 때
@@ -49,7 +56,7 @@ function handleImouseleave(event) {
 }
 
 // task의 맨 앞 아이콘 위에 마우스를 올릴 때 이벤트
-function handleImouseenter(event) {
+function handleCompleteIconMouseenter(event) {
   const i = event.target;
   const ul = event.target.parentNode.parentNode.className;
   // toDoList일 때
@@ -59,15 +66,17 @@ function handleImouseenter(event) {
   }
 }
 
-// task의 맨 앞에 있는 아이콘 클릭 할 때 이벤트 - 완료 전환
-function handleIClick(event) {
+// task의 맨 앞에 있는 아이콘 클릭 할 때 이벤트 - 완료상태 전환
+function handleCompleteIconClick(event) {
   const li = event.target.parentNode;
   const ul = li.parentNode.className;
+  const text = li.children[2].textContent;
   // toDoList에 있는 task를 클릭
   if (ul === "js-toDoList") {
     toDoList.removeChild(li);
     toDoCompleted.appendChild(li);
     li.firstChild.title = "완료 취소 | 작업 완료 및 미완료 간에 전환합니다.";
+    li.children[2].innerHTML = `<strike>${text}</strike>`;
     const completed = listToDoList.filter((element) => {
       return element.id === event.target.parentNode.id;
     });
@@ -82,6 +91,7 @@ function handleIClick(event) {
     toDoCompleted.removeChild(li);
     toDoList.appendChild(li);
     li.firstChild.title = "완료 | 작업 완료 및 미완료 간에 전환합니다.";
+    li.children[2].innerHTML = text;
     const uncompleted = listToDoCompleted.filter((element) => {
       return element.id === event.target.parentNode.id;
     });
@@ -96,10 +106,10 @@ function handleIClick(event) {
 }
 
 // 모든 task에서 오른쪽 마우스 클릭 할 때 이벤트
-function handleLicontextmenu(event) {}
+function handleTaskSlotContextmenu(event) {}
 
 // 모든 task를 더블 클릭 할 때 이벤트 - task 제거
-function handleLiDbclick(event) {
+function handleTaskSlotDbclick(event) {
   const li = event.target;
   const ul = li.parentNode.className;
   const i = li.firstChild;
@@ -147,40 +157,65 @@ function saveTask() {
 }
 
 // lacalStorage에 있는 task를 화면에 표시
-function paintTask(task, task_id, status) {
-  const li = document.createElement("li");
-  const i = document.createElement("i");
-  const span = document.createElement("span");
-  li.id = task_id;
-  span.innerHTML = task;
-  li.appendChild(i);
-  li.appendChild(span);
-  li.setAttribute("title", "더블 클릭 시 삭제됩니다.");
+function paintTask(task, task_id, status, starStatus) {
+  // taskSlot : task가 들어가는 박스
+  // completeIcon : complete 상태를 토글 할 수 있는 icon
+  // taskText : task 내용
+  // star : 중요한 내용을 표시해주는 icon
+  const taskSlot = document.createElement("li");
+  const completeIcon = document.createElement("i");
+  const taskText = document.createElement("span");
+  // const starIcon = document.createElement("i");
+  taskSlot.id = task_id;
+  taskSlot.classList.add("task");
+  taskSlot.setAttribute("title", "더블 클릭 시 삭제됩니다.");
+  taskSlot.appendChild(completeIcon);
+  taskSlot.appendChild(taskText);
+  // taskSlot.appendChild(starIcon);
   const taskObj = {
     id: task_id,
     task: task,
+    // starStatus: starStatus,
   };
-  li.addEventListener("dblclick", handleLiDbclick);
-  li.addEventListener("contextmenu", handleLicontextmenu);
-  i.addEventListener("click", handleIClick);
-  i.addEventListener("mouseenter", handleImouseenter);
-  i.addEventListener("mouseleave", handleImouseleave);
-  i.addEventListener("mousedown", handleImousedown);
+  taskSlot.addEventListener("dblclick", handleTaskSlotDbclick);
+  taskSlot.addEventListener("contextmenu", handleTaskSlotContextmenu);
+  completeIcon.addEventListener("click", handleCompleteIconClick);
+  completeIcon.addEventListener("mouseenter", handleCompleteIconMouseenter);
+  completeIcon.addEventListener("mouseleave", handleCompleteIconMouseleave);
+  completeIcon.addEventListener("mousedown", handleCompleteIconmousedown);
+  // starIcon.addEventListener("click", handleStarIconClick);
+
+  // console.log(starStatus);
+  // switch (starStatus) {
+  //   case star:
+  //     alert("나다");
+  //     starIcon.classList.add("far");
+  //     starIcon.classList.add("fa-star");
+  //     starIcon.setAttribute("title", "중요로 표시");
+  //     break;
+    // case starred:
+    //   starIcon.classList.add("fas");
+    //   starIcon.classList.add("fa-star");
+    //   starIcon.setAttribute("title", "중요도 제거");
+    //   break;
+  // }
 
   switch (status) {
     case undefined:
     case TODO_LIST:
-      i.classList.add("far");
-      i.classList.add("fa-circle");
-      i.title = "완료 | 작업을 완료 및 미완료 간에 전환합니다.";
-      toDoList.appendChild(li);
+      taskText.innerHTML = `${task}`;
+      completeIcon.classList.add("far");
+      completeIcon.classList.add("fa-circle");
+      completeIcon.title = "완료 | 작업을 완료 및 미완료 간에 전환합니다.";
+      toDoList.appendChild(taskSlot);
       listToDoList.push(taskObj);
       break;
     case TODO_COMPLETED:
-      i.classList.add("fas");
-      i.classList.add("fa-check-circle");
-      i.title = "완료 취소 | 작업을 완료 및 미완료 간에 전환합니다.";
-      toDoCompleted.appendChild(li);
+      taskText.innerHTML = `<strike>${task}</strike>`;
+      completeIcon.classList.add("fas");
+      completeIcon.classList.add("fa-check-circle");
+      completeIcon.title = "완료 취소 | 작업을 완료 및 미완료 간에 전환합니다.";
+      toDoCompleted.appendChild(taskSlot);
       listToDoCompleted.push(taskObj);
       break;
   }
@@ -193,7 +228,8 @@ function handleSubmit() {
   if (addTaskInput.value !== "") {
     const task = addTaskInput.value;
     const id = uuidv4();
-    paintTask(task, id);
+    // const starStatus = "star";
+    paintTask(task, id, undefined);
     addTaskInput.value = "";
   }
 }
@@ -217,6 +253,9 @@ function loadTask() {
 }
 
 function init() {
+  // alert(
+  //   `          ########## 사용 설명서 ##########\n1. 사용자 이름을 클릭하면 로그아웃 됩니다.\n2. task를 더블 클릭하면 task가 삭제됩니다.\n3. task 맨 앞의 아이콘을 누르면 완료됨으로 전환됩니다.\n4. 아무데나 마우스를 올리고 있으면 설명이 나옵니다.`
+  // );
   loadTask();
   addTaskForm.addEventListener("submit", handleSubmit);
 }

@@ -14,17 +14,21 @@
     <!-- header -->
     <header class="header">
       <h1 class="header__title">
-        <i class="fas fa-home"> 할 일</i>
+        <i class="fas fa-home" title="일 하고 싶다"> 할 일</i>
       </h1>
-      <h2 class="js-currentTime"></h2>
+      <h2 class="js-currentTime" title="나는 사실 습도계다."></h2>
       <form class="js-userIdForm form">
         <input type="text" placeholder="이름을 입력하세요." />
       </form>
       <h3 class="userId"></h3>
-      <h3 class="selectTheme colorUp">
+      <h3
+        class="selectTheme colorUp"
+        title="클릭 시 백그라운드 이미지, 색깔을 선택할 수 있게 구..."
+      >
         <i class="fas fa-ellipsis-h"></i>
       </h3>
     </header>
+
     <!-- main -->
     <main class="main">
       <ul class="js-toDoList">
@@ -36,21 +40,30 @@
           <span>to Do</span>
           <i class="far fa-check-circle"></i>
           <i class="fas fa-check-circle"></i>
+          <i class="far fa-star"></i>
+          <i class="fas fa-star"></i>
         </li> -->
       </ul>
       <div class="completedContainer">
-        <span class="competedText completed colorUp" title="완료됨 버킷 축소">
-          ▽ 완료됨
+        <span
+          class="competedText completed colorUp"
+          title="완료됨 | 클릭 시 버킷 축소"
+        >
+          <i class="fas fa-chevron-down"> 완료됨</i>
+          <!-- <i class="fas fa-chevron-right"></i> -->
         </span>
         <ul class="js-toDoCompleted">
           <!-- <li>
             <i class="far fa-circle" title="완료 취소&#10;&#10;작업을 완료 및 미완료 간에 전환합니다."></i>
             <span><strike>완료된 toDo</strike></span>
             <i class="fas fa-check-circle"></i>
+            <i class="far fa-star"></i>
+            <i class="fas fa-star"></i>
           </li> -->
         </ul>
       </div>
     </main>
+
     <!-- addTask -->
     <div class="addTask">
       <form class="js-addTaskForm colorUp">
