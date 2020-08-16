@@ -5,19 +5,9 @@ html {
   height: 100%;
 }
 
-@keyframes bgImageAnimation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 body {
   padding: 10px 40px 0 40px;
   user-select: none;
-  animation: bgImageAnimation 0.5s linear;
-  z-index: -1;
 }
 
 .header {
@@ -58,6 +48,9 @@ body {
   border-radius: 5px;
 }
 
+.main {
+  z-index: 2;
+}
 .main ul {
   list-style: none;
   padding: 0;
@@ -79,7 +72,7 @@ body {
   justify-content: center;
   align-content: center;
   box-sizing: border-box;
-  z-index: 999;
+  z-index: 5;
 }
 
 .addTask form {

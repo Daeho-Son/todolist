@@ -19,25 +19,25 @@ function getClock() {
   let seconds = date.getSeconds();
   switch (dayOfTheWeek) {
     case 1:
-      dayOfTheWeek = "월";
+      dayOfTheWeek = "Mon";
       break;
     case 2:
-      dayOfTheWeek = "화";
+      dayOfTheWeek = "Tue";
       break;
     case 3:
-      dayOfTheWeek = "수";
+      dayOfTheWeek = "Wed";
       break;
     case 4:
-      dayOfTheWeek = "목";
+      dayOfTheWeek = "Thu";
       break;
     case 5:
-      dayOfTheWeek = "금";
+      dayOfTheWeek = "Fri";
       break;
     case 6:
-      dayOfTheWeek = "토";
+      dayOfTheWeek = "Sat";
       break;
     case 0:
-      dayOfTheWeek = "일";
+      dayOfTheWeek = "Sun";
       break;
   }
   month = month < 10 ? `0${month}` : `${month}`;

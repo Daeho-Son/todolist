@@ -122,9 +122,6 @@ function handleCompleteIconClick(event) {
   saveTask();
 }
 
-// 모든 task에서 오른쪽 마우스 클릭 할 때 이벤트
-function handleTaskSlotContextmenu(event) {}
-
 // 모든 task를 더블 클릭 할 때 이벤트 - task 제거
 function handleTaskSlotDbclick(event) {
   const li = event.target;
@@ -179,7 +176,6 @@ function paintTask(task, task_id, status, starStatus) {
   // taskSlot : task가 들어가는 박스
   // completeIcon : complete 상태를 토글 할 수 있는 icon
   // taskText : task 내용
-  // star : 중요한 내용을 표시해주는 icon
   const taskSlot = document.createElement("li");
   const completeIcon = document.createElement("i");
   const taskText = document.createElement("span");
@@ -189,35 +185,16 @@ function paintTask(task, task_id, status, starStatus) {
   taskSlot.setAttribute("title", "It will be deleted on double-click.");
   taskSlot.appendChild(completeIcon);
   taskSlot.appendChild(taskText);
-  // taskSlot.appendChild(starIcon);
   const taskObj = {
     id: task_id,
     task: task,
-    // starStatus: starStatus,
   };
   taskSlot.addEventListener("dblclick", handleTaskSlotDbclick);
-  taskSlot.addEventListener("contextmenu", handleTaskSlotContextmenu);
   completeIcon.addEventListener("click", handleCompleteIconClick);
   completeIcon.addEventListener("mouseenter", handleCompleteIconMouseenter);
   completeIcon.addEventListener("mouseleave", handleCompleteIconMouseleave);
   completeIcon.addEventListener("mousedown", handleCompleteIconmousedown);
   completedText.addEventListener("click", handleCompletedTextClick);
-  // starIcon.addEventListener("click", handleStarIconClick);
-
-  // console.log(starStatus);
-  // switch (starStatus) {
-  //   case star:
-  //     alert("나다");
-  //     starIcon.classList.add("far");
-  //     starIcon.classList.add("fa-star");
-  //     starIcon.setAttribute("title", "중요로 표시");
-  //     break;
-  // case starred:
-  //   starIcon.classList.add("fas");
-  //   starIcon.classList.add("fa-star");
-  //   starIcon.setAttribute("title", "중요도 제거");
-  //   break;
-  // }
 
   switch (status) {
     case undefined:
