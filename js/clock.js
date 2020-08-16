@@ -1,5 +1,13 @@
 const clock = document.querySelector(".js-currentTime");
 
+// 시계 정보를 클릭할 때 이벤트 - 날씨 정보로 전환
+function handleClockClick() {
+  const UNSHOWING = "unshowing";
+  const SHOWING = "showing";
+  clock.classList.add(UNSHOWING);
+  weather.classList.add(SHOWING);
+}
+
 function getClock() {
   const date = new Date();
   const fullYear = date.getFullYear();
@@ -39,6 +47,7 @@ function getClock() {
   seconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
   clock.innerHTML = `${fullYear}-${month}-${day} (${dayOfTheWeek})<br>&nbsp;&nbsp;&nbsp;&nbsp;${hour}:${minutes}:${seconds}`;
+  clock.addEventListener("click", handleClockClick);
 }
 
 function init() {

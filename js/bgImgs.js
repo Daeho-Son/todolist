@@ -1,7 +1,7 @@
 const body = document.querySelector("body");
 
 const MIN_COUNT = 1,
-  MAX_COUNT = 5;
+  MAX_COUNT = 6;
 
 function paintBgImg(num) {
   window.onload = function () {

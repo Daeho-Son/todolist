@@ -4,7 +4,6 @@ const main = document.querySelector(".main"),
   userId = document.querySelector(".userId");
 
 const USER_ID = "userId";
-const SHOWING = "showing";
 
 function logout(event) {
   userId.innerHTML = "";
@@ -23,12 +22,14 @@ function handleUserIdSubmit(event) {
 
 // main을 보이지 않게 하고, input 이벤트를 호출
 function askForName() {
+  const SHOWING = "showing";
   main.classList.remove(SHOWING);
   userIdForm.classList.add(SHOWING);
   userIdForm.addEventListener("submit", handleUserIdSubmit);
 }
 
 function paintMain(currentId) {
+  const SHOWING = "showing";
   userIdForm.classList.remove(SHOWING);
   main.classList.add(SHOWING);
   userId.innerHTML = `<font color="black"><u>${currentId}</u></font>님, 환영합니다.`;

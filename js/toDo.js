@@ -226,11 +226,16 @@ function paintTask(task, task_id, status, starStatus) {
 function handleSubmit() {
   event.preventDefault();
   if (addTaskInput.value !== "") {
-    const task = addTaskInput.value;
-    const id = uuidv4();
-    // const starStatus = "star";
-    paintTask(task, id, undefined);
-    addTaskInput.value = "";
+    if (localStorage.getItem(USER_ID) === null) {
+      alert("사용자의 이름을 입력해주세요");
+      addTaskForm.value = "";
+    } else {
+      const task = addTaskInput.value;
+      const id = uuidv4();
+      // const starStatus = "star";
+      paintTask(task, id, undefined);
+      addTaskInput.value = "";
+    }
   }
 }
 

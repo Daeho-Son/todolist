@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>To Do List</title>
-    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <script
       src="https://kit.fontawesome.com/d0bc696c77.js"
       crossorigin="anonymous"
@@ -14,12 +14,12 @@
     <!-- header -->
     <header class="header">
       <h1 class="header__title">
-        <i class="fas fa-home" title="일 하고 싶다"> 할 일</i>
+        <i class="fas fa-home" title="할리갈리"> 할 일</i>
       </h1>
-      <h2 class="js-currentTime" title="나는 사실 습도계다."></h2>
-      <h2 class="js-weather" title="나는 사실 시계다."></h2>
+      <h2 class="js-currentTime clock" title="나는 사실 온도계다."></h2>
+      <h2 class="js-weather weather" title="나는 사실 시계다."></h2>
       <form class="js-userIdForm form">
-        <input type="text" placeholder="이름을 입력하세요." />
+        <input type="text" placeholder="이름을 입력하세요." class="colorUp"/>
       </form>
       <h3 class="userId"></h3>
       <h3
@@ -79,10 +79,10 @@
         />
       </form>
     </div>
-    <script src="src/login.js"></script>
-    <script src="src/clock.js"></script>
-    <script src="src/toDo.js"></script>
-    <script src="src/bgImgs.js"></script>
-    <script src="src/weather.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/toDo.js"></script>
+    <script src="js/bgImgs.js"></script>
+    <script src="js/weather.js"></script>
   </body>
 </html>

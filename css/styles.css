@@ -1,11 +1,23 @@
+@import "mobile.css";
+
 html {
   width: 100%;
   height: 100%;
 }
 
+@keyframes bgImageAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 body {
   padding: 10px 40px 0 40px;
   user-select: none;
+  animation: bgImageAnimation 0.5s linear;
+  z-index: -1;
 }
 
 .header {
@@ -18,8 +30,17 @@ body {
   margin-top: 30px;
 }
 
+.header .weather {
+  margin-top: 35px;
+}
+
 .header .form {
-  margin-top: 50px;
+  margin-top: 40px;
+}
+
+.header .form input {
+  padding: 0.8em 0.5em;
+  border-radius: 5px;
 }
 
 .header .userId {
@@ -30,7 +51,7 @@ body {
   color: white;
 }
 .header .selectTheme {
-  margin-top: 38px;
+  margin-top: 43px;
   height: 0px;
   padding: 0em 0.7em 1.3em 0.7em;
   border: 1px solid black;
@@ -96,7 +117,8 @@ body {
 /* js 관련 */
 .form,
 .main,
-.completedContainer {
+.completedContainer,
+.js-weather {
   display: none;
 }
 
@@ -104,6 +126,9 @@ body {
   display: block;
 }
 
+.unshowing {
+  display: none;
+}
 .bgImage {
   position: absolute;
   top: 0;
@@ -126,8 +151,4 @@ body {
 
 .task span {
   margin-left: 10px;
-}
-
-.js-weather {
-  display: none;
 }
