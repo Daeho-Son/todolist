@@ -98,11 +98,8 @@ body .colorUp {
 
 /* js 관련 */
 .form,
-.main {
-  display: none;
-}
-
-.unshowing {
+.main,
+.completedContainer {
   display: none;
 }
 
