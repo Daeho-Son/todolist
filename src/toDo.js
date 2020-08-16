@@ -193,11 +193,11 @@ function paintTask(task, task_id, status, starStatus) {
   //     starIcon.classList.add("fa-star");
   //     starIcon.setAttribute("title", "중요로 표시");
   //     break;
-    // case starred:
-    //   starIcon.classList.add("fas");
-    //   starIcon.classList.add("fa-star");
-    //   starIcon.setAttribute("title", "중요도 제거");
-    //   break;
+  // case starred:
+  //   starIcon.classList.add("fas");
+  //   starIcon.classList.add("fa-star");
+  //   starIcon.setAttribute("title", "중요도 제거");
+  //   break;
   // }
 
   switch (status) {

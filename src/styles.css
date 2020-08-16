@@ -127,3 +127,7 @@ body {
 .task span {
   margin-left: 10px;
 }
+
+.js-weather {
+  display: none;
+}

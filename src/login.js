@@ -18,6 +18,7 @@ function handleUserIdSubmit(event) {
   const currentId = userIdInput.value;
   paintMain(currentId);
   localStorage.setItem(USER_ID, userIdInput.value);
+  userIdInput.value = "";
 }
 
 // main을 보이지 않게 하고, input 이벤트를 호출
