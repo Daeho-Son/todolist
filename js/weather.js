@@ -1,7 +1,7 @@
 const weather = document.querySelector(".js-weather");
+require('dotenv').config();
 
-const API_KEY = config.SECRET_KEY;
-
+const WEATHER_API_KEY = process.env.API_KEY;
 const COORDS = "coords";
 
 // 날씨 정보를 더블클릭할 때 이벤트 - 시간 정보로 변함
@@ -15,7 +15,7 @@ function handleWeatherClick() {
 // 가져온 위도와 경로를 이용해서 날씨정보를 가져옴
 function getWheather(lat, lon) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
   )
     .then(function (response) {
       return response.json();

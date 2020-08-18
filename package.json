@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "todolist",
+  "main": "js/index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sondho/todolist.git"
+  },
+  "author": "Sondho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sondho/todolist/issues"
+  },
+  "homepage": "https://github.com/Sondho/todolist#readme"
+}
